@@ -206,6 +206,7 @@ jobs:
       - image: cimg/base:2022.04
     steps:
       - checkout
+      - install_ansible
       - add_ssh_keys:
           fingerprints: [ "a7:fc:5c:ca:09:2a:42:ad:bc:34:d2:25:cf:9d:8a:43" ]
       - attach_workspace:
