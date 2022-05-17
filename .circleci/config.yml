@@ -239,7 +239,7 @@ jobs:
               then
                   curl -X POST https://kvdb.io/SbK9tpBZKXvr2zfQdUa6vd/migration_${CIRCLE_WORKFLOW_ID:0:7} -d 1
               fi 
-              
+              cat ~/project/backend/migrations_dump.txt
       - destroy-environment 
       - revert-migrations
 
