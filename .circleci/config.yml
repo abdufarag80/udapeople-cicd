@@ -401,7 +401,11 @@ jobs:
               export STACKS=($(aws cloudformation list-stacks --query "StackSummaries[*].StackName" \
                 --stack-status-filter CREATE_COMPLETE --no-paginate --output text))
 
-              printf '%s\n' "${STACKS[@]}"
+              printf '%s\n' "${STACKS[@]}"              
+              
+              Buckets = ($( aws s3api list-buckets --query "Buckets[].Name" ))
+              printf '%s\n' "${Buckets[@]}"
+
         - run:
             name: Remove old stacks and files
             command: |
