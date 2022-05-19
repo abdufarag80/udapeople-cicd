@@ -398,6 +398,9 @@ jobs:
                 --stack-status-filter CREATE_COMPLETE --no-paginate --output text  ))
               echo Stack names: "${STACKS[@]}"
               
+              Buckets = ($(aws s3api list-buckets --query "Buckets[].Name" --no-paginate --output text))
+              echo Buckets: "${Buckets[@]}"
+
               export OldWorkflowID=$( curl --insecure https://kvdb.io/5oAmKsszTQkqjgXFAxDihS/old_workflow_id )
               echo Old Workflow ID : $OldWorkflowID
         - run:
