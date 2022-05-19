@@ -395,15 +395,12 @@ jobs:
             name: Get old stack workflow id 
             command: |
               OLD_WORKFLOW_ID=$(curl --insecure https://kvdb.io/5oAmKsszTQkqjgXFAxDihS/old_workflow_id)
-
               echo "OLD_WORKFLOW_ID: $OLD_WORKFLOW_ID."
-
               export STACKS=($(aws cloudformation list-stacks --query "StackSummaries[*].StackName" \
                 --stack-status-filter CREATE_COMPLETE --no-paginate --output text))
-
               printf '%s\n' "${STACKS[@]}"              
               
-              Buckets = ($( aws s3api list-buckets --query "Buckets[].Name" ))
+              Buckets=($(aws s3api list-buckets --query "Buckets[].Name" --no-paginate --output text))
               printf '%s\n' "${Buckets[@]}"
 
         - run:
