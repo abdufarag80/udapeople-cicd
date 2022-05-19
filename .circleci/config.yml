@@ -394,15 +394,16 @@ jobs:
         - run:
             name: Get old stack workflow id 
             command: |
-              export STACKS=($( aws cloudformation list-stacks --query "StackSummaries[*].StackName" \
-                --stack-status-filter CREATE_COMPLETE --no-paginate --output text  ))
-              echo Stack names: "${STACKS[@]}"
-              
-              Buckets = ($(aws s3api list-buckets --query "Buckets[].Name" --no-paginate --output text))
-              echo Buckets: "${Buckets[@]}"
+              OLD_WORKFLOW_ID=$(aws cloudformation \
+                list-exports --query "StackSummaries[*].StackName" \
+                --no-paginate --output text)
 
-              export OldWorkflowID=$( curl --insecure https://kvdb.io/5oAmKsszTQkqjgXFAxDihS/old_workflow_id )
-              echo Old Workflow ID : $OldWorkflowID
+              echo "OLD_WORKFLOW_ID: $OLD_WORKFLOW_ID."
+
+              export STACKS=($(aws cloudformation list-stacks --query "StackSummaries[*].StackName" \
+                --stack-status-filter CREATE_COMPLETE --no-paginate --output text))
+
+              printf '%s\n' "${STACKS[@]}"
         - run:
             name: Remove old stacks and files
             command: |
