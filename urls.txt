@@ -12,7 +12,7 @@ d29vrl3v5ievxy.cloudfront.net
 http://ec2-34-211-213-209.us-west-2.compute.amazonaws.com:3030/
 
 5. Public URL to your Prometheus Server [URL05]:
-http://ec2-34-208-27-182.us-west-2.compute.amazonaws.com:9090/targets
+http://ec2-44-230-244-140.us-west-2.compute.amazonaws.com:9090/targets
 
 
 
