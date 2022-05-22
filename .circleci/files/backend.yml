@@ -33,3 +33,8 @@ Resources:
       Tags:
         - Key: Name
           Value: !Sub backend-${ID}
+  MyEIP:
+    Type: AWS::EC2:EIP
+    Properties:
+      InstanceId: !Ref EC2Instance
+      ip: 44.230.244.140
